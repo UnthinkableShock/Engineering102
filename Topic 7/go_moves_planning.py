@@ -59,8 +59,8 @@ while play == True:
         print("no no no that space is not EMPTEEEEEE, try again.")
     elif (board[yInput][xInput] == "."):
         if (player == "player 1"):
-            board[yInput][xInput] = " O "
+            board[yInput][xInput] = "O"
             player = "player 2"
         elif (player == "player 2"):
-            board[yInput][xInput] = " o "
+            board[yInput][xInput] = "o"
             player = "player 1"
