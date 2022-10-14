@@ -31,7 +31,7 @@ board = [[".", ".", ".", ".", ".", ".", ".", ".", "."],
              ".", ".", ".", "."],
          [".", ".", ".", ".", ".", ".", ".", ".", "."]]
 
-play = True
+play = True #If true, play game
 player = "player 1"
 while play == True:
     print("The board looks like this: ")
