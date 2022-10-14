@@ -11,3 +11,6 @@
 # Date:         14 October, 2022
 #
 
+#### put the resulting strings for hours and minutes into their own variables ####
+hours = myList[0]
+minutes = myList[1]
