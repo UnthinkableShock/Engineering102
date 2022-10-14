@@ -31,36 +31,41 @@ board = [[".", ".", ".", ".", ".", ".", ".", ".", "."],
              ".", ".", ".", "."],
          [".", ".", ".", ".", ".", ".", ".", ".", "."]]
 
-play = True #If true, play game
-player = "player 1"
-while play == True:
+play = True
+player = "Black"
+while play == True: # this loop contains the entire game loop
     print("The board looks like this: ")
-    for i in board:
+    for i in board: # this loop prints the board each turn
         print('\n', end=" ")
         for space in i:
             print(space, end=" ")
 
     print(f"\nIt is currently {player}'s turn")
     xInput = input("Please input an integer for the column: ")
-    if (xInput == "stop"):  # this checks if the input was 'stop'
-        play = False
+    if (xInput == "stop"): # this checks if the input was 'stop'
         break
     else:
-        xInput = int(xInput)
+        xInput = int(xInput) # converts the xInput to an integer for use in accessing indexes later
+        if not (xInput in range(9)):
+            print("That value is not valid. Valid values are integers 0 to 8 inclusive.")
+            continue # skips the rest of this iteration of the while loop
 
     yInput = input("Please input an integer for the row: ")
-    if (yInput == "stop"):
-        play = False
+    if (yInput == "stop"): # this checks if the input was stop
         break
     else:
-        yInput = int(yInput)
+        yInput = int(yInput) # converts the yInput to an integer for use in accessing indexes later
+        if (not (xInput in range(9) or not (yInput in range(9)))):
+            print("That value is not valid, Valid values are integers 0 to 8 inclusive.")
+            continue # skips the rest of this iteration of the while loop
 
-    if (board[yInput][xInput] != "."):
-        print("no no no that space is not EMPTEEEEEE, try again.")
-    elif (board[yInput][xInput] == "."):
-        if (player == "player 1"):
+    if (board[yInput][xInput] != "."): # checks if the space was NOT empty
+        print("no no no that space is not EMPTEEEEEE, try again!")
+        continue
+    elif (board[yInput][xInput] == "."): # if the space is empty
+        if (player == "Black"):
             board[yInput][xInput] = "O"
-            player = "player 2"
-        elif (player == "player 2"):
+            player = "White"
+        elif (player == "White"):
             board[yInput][xInput] = "o"
-            player = "player 1"
+            player = "Black"
