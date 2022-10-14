@@ -17,8 +17,6 @@
 time = input('Enter the time: ')
 myList = time.split(":") # .split string method returns a list
 
-
-
 #### put the resulting strings for hours and minutes into their own variables ####
 hours = myList[0]
 minutes = myList[1]

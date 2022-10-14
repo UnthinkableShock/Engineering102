@@ -10,3 +10,6 @@
 # Assignment:   Topic 8 py file
 # Date:         14 October, 2022
 #
+
+time = input('Enter the time: ')
+myList = time.split(":") # .split string method returns a list
