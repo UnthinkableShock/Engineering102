@@ -15,6 +15,8 @@
 #have the user input 4 numbers in time format example: "12:30"
 #make input a new list variable 
 time = input('Enter the time: ')
+if len(time)<5:
+    time = "0"+time
 myList = time.split(":") # .split string method returns a list
 
 #### put the resulting strings for hours and minutes into their own variables ####
@@ -72,7 +74,28 @@ myNumbers = [
      '9 9',
      '999',
      '  9',
-     '  9',]
+     '999',],
+    [' ',
+    ':',
+    ' ',
+    ':',
+    ' ']
 ]
 
 #### print the output line by line ####
+newTime = []
+for x in range(len(time)):
+    if time[x] != ":":
+        newTime.append(int(time[x]))
+#print(newTime)
+one = myNumbers[newTime[0]]
+two = myNumbers[newTime[1]]
+seporator = myNumbers[10]
+three = myNumbers[newTime[2]]
+four = myNumbers[newTime[3]]
+
+print()
+if newTime[0] == 0:
+    for x in range(len(myNumbers[0])): print(two[x],seporator[x], three[x], four[x] + ' ')
+else:
+    for x in range(len(myNumbers[0])): print(one[x], two[x],seporator[x], three[x], four[x] + ' ')
