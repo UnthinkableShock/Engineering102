@@ -12,10 +12,14 @@
 #
 
 #### get input and store it into a variable ####
+#have the user input 4 numbers in time format example: "12:30"
+#make input a new list variable 
+time = input('Enter the time: ')
+myList = time.split(":") # .split string method returns a list
 
-
-#### split the string, putting the substrings for hours and minutes into their own variables ####
-# use .split(":")
+#### put the resulting strings for hours and minutes into their own variables ####
+hours = myList[0]
+minutes = myList[1]
 
 #### define the structure for the numbers ####
 myNumbers = [
