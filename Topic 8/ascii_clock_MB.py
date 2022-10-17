@@ -11,5 +11,8 @@
 # Date:         14 October, 2022
 #
 
+#have the user input 4 numbers in time format example: "12:30"
 time = input('Enter the time: ')
+#make input a new list variable 
 myList = time.split(":") # .split string method returns a list
+#### split the string, putting the substrings for hours and minutes into their own variables ####
