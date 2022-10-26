@@ -12,7 +12,7 @@
 #
 #from ascii_clock_RH import myNumbers
 #have the user input 4 numbers in time format example: "12:30"
-fromascii_clock_MB import time
+from ascii_clock_MB import time
 
 
 myList = time.split(":") # .split string method returns a list
