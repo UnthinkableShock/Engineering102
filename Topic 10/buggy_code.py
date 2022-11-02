@@ -91,12 +91,12 @@ for i in range(len(temp5)):
 # now interpolate with pressure
 v = interpolate(5, vl, 10, vh, pres)
 u = interpolate(5, ul, 10, uh, pres)
-h = interpolate(5, ll, 10, hh, pres)
+h = interpolate(5, hl, 10, hh, pres)
 s = interpolate(5, sl, 10, sh, pres)
 
 ##### print results #####
 print('Properties at {pres} deg C and {temp} MPa are:')
 print(f'Specific volume (m^3/kg): {v:.7f}')
-print(f'Specific internal energy (kJ/kg): {u:.2f}'
+print(f'Specific internal energy (kJ/kg): {u:.2f}')
 print(f'Specific enthalpy (kJ/kg): {h:.2f}')
-print(f'Specific entropy (kJ/kgK): {s:.3f})
+print(f'Specific entropy (kJ/kgK): {s:.3f}')
