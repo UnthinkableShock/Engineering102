@@ -11,6 +11,12 @@
 # Date:         2 November, 2022
 #
 
+##### Hints: #####
+# 1. look for common mistakes like mispellings, missing commas, missing parenthesis or brackets.
+# 2. look for places where variables are being assigned in a way that doesn't make sense.
+# 3. look for places where functions aren't being used in the way they were intended.
+# 4. compare the values in the excel file given to the values hardcoded into the program to check for errors.
+
 def interpolate(x1, x2, y1, y2, x):
     '''This function interpolates between two points'''
     slope = (y2 - y1) / (x2 - x1)
