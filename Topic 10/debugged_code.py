@@ -73,8 +73,8 @@ for i in range(len(temp5)):
         sl, sh = s5[i], s10[i]
         break
     elif temp == temp5[i + 1]:  # if equal to upper bound
-        ul, uh = v5[i + 1], v10[i + 1]
-        vl, vh = u5[i + 1], u10[i + 1]
+        ul, uh = u5[i + 1], u10[i + 1]
+        vl, vh = v5[i + 1], v10[i + 1]
         hl, hh = h5[i + 1], h10[i + 1]
         sl, sh = s5[i + 1], s10[i + 1]
         break
