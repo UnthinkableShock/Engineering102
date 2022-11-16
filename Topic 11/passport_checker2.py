@@ -47,12 +47,12 @@ count = 0
 for wee in processed:
     # note: wee in this case is a list
     # this list contains a dictionary (at index 0) and the original string of each ID (at index 1)
-    
-    isValid = False # ids are false by default, that is unless and until the code evaluates otherwise
+    validity = 0
 
     # if the id has all the fields
     if (("byr" in wee[0]) and ("iyr" in wee[0]) and ("eyr" in wee[0]) and ("hgt" in wee[0]) and ("ecl" in wee[0]) and ("pid" in wee[0]) and ("cid" in wee[0])):
         myDict = wee[0]
+        
         byr = myDict["byr"]
         iyr = myDict["iyr"]
         eyr = myDict["eyr"]
@@ -65,6 +65,13 @@ for wee in processed:
         # we will use a series of if statements to determine is the value for the given key is valid
 
         # byr - 4 digits, between 1920 and 2005, inclusive
+        try: # try-except pair to catch the cases where byr is not a valid integer
+            byr = int(byr) 
+            if (len(str(byr)) == 4 and byr >= 1920 and byr <= 2005):
+                validity += 1 # only adds to validity if byr is both a valid integer and the right length and if it is between the given limits
+        except:
+            continue
+        
         # iyr - 4 digits, between 2012 and 2022, inclusive
         # eyr - 4 digits, between 2022 and 2032, inclusive
         # hgt - number folloed by either cm or in
@@ -75,7 +82,7 @@ for wee in processed:
         # cid - 3 digit number, NOT INCLUDING leading zeros
 
 
-    if (isValid):
+    if (validity == 7):
         myString += f"{wee[1]}\n\n"    
         count += 1
 
