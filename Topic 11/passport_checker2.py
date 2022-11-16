@@ -48,11 +48,10 @@ for wee in processed:
     # note: wee in this case is a list
     # this list contains a dictionary (at index 0) and the original string of each ID (at index 1)
     validity = 0
-
+    
     # if the id has all the fields
     if (("byr" in wee[0]) and ("iyr" in wee[0]) and ("eyr" in wee[0]) and ("hgt" in wee[0]) and ("ecl" in wee[0]) and ("pid" in wee[0]) and ("cid" in wee[0])):
         myDict = wee[0]
-        
         byr = myDict["byr"]
         iyr = myDict["iyr"]
         eyr = myDict["eyr"]
@@ -67,47 +66,49 @@ for wee in processed:
         # byr - 4 digits, between 1920 and 2005, inclusive
         try: # try-except pair to catch the cases where byr is not a valid integer
             byr = int(byr) 
+            
             if (len(str(byr)) == 4 and byr >= 1920 and byr <= 2005):
                 validity += 1 # only adds to validity if byr is both a valid integer and the right length and if it is between the given limits
         except:
-            continue
-        
+            validity += 0
+            
         # iyr - 4 digits, between 2012 and 2022, inclusive
         try: # try-except pair to catch the cases where byr is not a valid integer
             iyr = int(iyr) 
             if (len(str(iyr)) == 4 and iyr >= 2012 and iyr <= 2022):
                 validity += 1 # only adds to validity if byr is both a valid integer and the right length and if it is between the given limits
         except:
-            continue
+            validity += 0
         
         # eyr - 4 digits, between 2022 and 2032, inclusive
         try: # try-except pair to catch the cases where byr is not a valid integer
-            eyt = int(eyr) 
+            eyr = int(eyr) 
             if (len(str(eyr)) == 4 and eyr >= 2022 and eyr <= 2032):
                 validity += 1 # only adds to validity if byr is both a valid integer and the right length and if it is between the given limits
         except:
-            continue
+            validity += 0
 
         # hgt - number followed by either cm or in
             # if cm, number must be between 150 and 193, inclusive
             # if in, number must be between 59 and 76, inclusive
-        heightList = hgt.split()
         try:
-            heightValue = int(heightList[0])
-            measure = heightList[1]
-            if (measure == "cm" and heightValue >= 150 and heightValue <= 193):
-                validity += 1
-            elif (measure == "in" and heightValue >= 59 and heightValue <= 76):
-                validity += 1
+            if ("cm" in hgt and len(hgt) == 5):
+                myHeight = int(hgt[0:3])
+                if (myHeight >= 150 and myHeight <= 193):
+                    validity += 1
+            if ("in" in hgt and len(hgt) == 4):
+                myHeight = int(hgt[0:2])
+                if (myHeight >= 59 and myHeight <= 76):
+                    validity += 1
         except:
-            continue
+            validity += 0
 
         # ecl - exactly one of the following: amb, blu, brn, gry, grn, hzl, oth
         try:
             if (ecl == "amb" or ecl == "blu" or ecl == "brn" or ecl == "gry" or ecl == "grn" or ecl == "hzl" or ecl == "oth"):
                 validity += 1
         except:
-            continue
+            validity += 0
 
         # pid - 9 digit number including leading zeros
         try:
@@ -115,15 +116,15 @@ for wee in processed:
             if (len(pid) == 9):
                 validity += 1
         except:
-            continue
+            validity += 0
 
         # cid - 3 digit number, NOT INCLUDING leading zeros
         try:
-            int(cid)
+            cid = str(int(cid))
             if (len(cid) == 3):
                 validity += 1
         except:
-            continue
+            validity += 0
 
 
     if (validity == 7):
