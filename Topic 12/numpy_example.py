@@ -14,4 +14,13 @@
 # As a team, we have gone through all required sections of the  
 # tutorial, and each team member understands the material 
 
-import numpy
+import numpy as np
+
+# important commands
+# arange
+# reshape
+# limspace
+# size
+# shape
+# array
+# @ is matrix multiplication

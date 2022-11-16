@@ -14,4 +14,4 @@
 # As a team, we have gone through all required sections of the  
 # tutorial, and each team member understands the material 
 
-import matplotlib
+import matplotlib as mp

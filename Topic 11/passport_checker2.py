@@ -73,17 +73,61 @@ for wee in processed:
             continue
         
         # iyr - 4 digits, between 2012 and 2022, inclusive
+        try: # try-except pair to catch the cases where byr is not a valid integer
+            iyr = int(iyr) 
+            if (len(str(iyr)) == 4 and iyr >= 2012 and iyr <= 2022):
+                validity += 1 # only adds to validity if byr is both a valid integer and the right length and if it is between the given limits
+        except:
+            continue
+        
         # eyr - 4 digits, between 2022 and 2032, inclusive
-        # hgt - number folloed by either cm or in
+        try: # try-except pair to catch the cases where byr is not a valid integer
+            eyt = int(eyr) 
+            if (len(str(eyr)) == 4 and eyr >= 2022 and eyr <= 2032):
+                validity += 1 # only adds to validity if byr is both a valid integer and the right length and if it is between the given limits
+        except:
+            continue
+
+        # hgt - number followed by either cm or in
             # if cm, number must be between 150 and 193, inclusive
             # if in, number must be between 59 and 76, inclusive
+        heightList = hgt.split()
+        try:
+            heightValue = int(heightList[0])
+            measure = heightList[1]
+            if (measure == "cm" and heightValue >= 150 and heightValue <= 193):
+                validity += 1
+            elif (measure == "in" and heightValue >= 59 and heightValue <= 76):
+                validity += 1
+        except:
+            continue
+
         # ecl - exactly one of the following: amb, blu, brn, gry, grn, hzl, oth
+        try:
+            if (ecl == "amb" or ecl == "blu" or ecl == "brn" or ecl == "gry" or ecl == "grn" or ecl == "hzl" or ecl == "oth"):
+                validity += 1
+        except:
+            continue
+
         # pid - 9 digit number including leading zeros
+        try:
+            int(pid)
+            if (len(pid) == 9):
+                validity += 1
+        except:
+            continue
+
         # cid - 3 digit number, NOT INCLUDING leading zeros
+        try:
+            int(cid)
+            if (len(cid) == 3):
+                validity += 1
+        except:
+            continue
 
 
     if (validity == 7):
-        myString += f"{wee[1]}\n\n"    
+        myString += f"{wee[1]}\n\n"  
         count += 1
 
 #print(myString)
