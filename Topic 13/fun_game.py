@@ -78,13 +78,13 @@ def new_turtle(myTurtles, destination, color):
     ypos = 225
     radius = 20
     width = 1
-    myTurtle = turtle.Turtle()
+    myTurtle = turtle.Turtle() # a new turtle object
     myTurtle.color(color)
     myTurtle.speed(0)
     myTurtle.width(1)
     myTurtle.hideturtle() # hides the turtle
-    myTurtle.penup()
-    myTurtle.goto(xpos, ypos)
+    myTurtle.penup() # makes it so that the turtle doesn't leave behind a trail
+    myTurtle.goto(xpos, ypos) # go to the starting point, off screen
     myDict = {
         "turtle":myTurtle,
         "side":color,
@@ -96,29 +96,32 @@ def new_turtle(myTurtles, destination, color):
         "color":color,
         "radius":radius,
     }
-
     myTurtles.append(myDict)
     return 0
 
 ##############
 
 def rules():
+    """
+    Prints the rules into the console
+    """
     print("Welcome to the game of Connect Four! This version is meant for 2 players.")
     print("The rules are simple:")
     print("1. In order to win, you need to get 4 of your color pieces in a row diagonally, horizontally, or vertically.")
     print("2. If a column is full, you cannot place a piece in that column")
     print("3. Pieces stack on top of other pieces previously placed in the same column\n")
     print("Options:")
-    print("'exit' : inputting exit will exit the game")
-    print("'help' : inputting help will bring up the rules again\n")
-    print("As a sidenote, being able to see both the cmd line and the turtle screen\nat the same time will make it easier to play\n")
+    print("'exit' : inputting 'exit' will exit the game")
+    print("'help' : inputting 'help' will bring up the rules again")
+    print("'log' : inputting 'log' will print out all recorded events, like moves made, into the console")
+    print("\nAs a sidenote, being able to see both the cmd line and the turtle window\nat the same time will make it easier to play\n")
     return 0
 
 ##############
 
 def drawCircle(myTurtle, color='red', radius=20):
     """
-    draws a circle for the indicated turtle
+    draws a circle using the indicated turtle
     """
     myTurtle.fillcolor(color)
     myTurtle.begin_fill()
@@ -127,6 +130,9 @@ def drawCircle(myTurtle, color='red', radius=20):
     return 0
 
 def phase0(sillyTurtle):
+    """
+    phase0 makes the turtle move from off screen to on screen
+    """
     if sillyTurtle["phase"] == 0: # phase 0 is just coming onto the screen
         if abs(sillyTurtle["turtle"].xcor() - sillyTurtle["destination"][0] - sillyTurtle["rad"]) <= 1:
             sillyTurtle["phase"] += 1
@@ -139,6 +145,9 @@ def phase0(sillyTurtle):
         return False
 
 def phase1(sillyTurtle, angle, xtar, ytar):
+    """
+    Makes the turtle perform a Loop de loop. Need I say more?
+    """
     if sillyTurtle["phase"] == 1: # phase 1 is where the fun part is: LOOP DE LOOP WHOOOOOP!!!
         if abs(angle - np.pi) <= 0.01:
             sillyTurtle["phase"] += 1
@@ -151,6 +160,9 @@ def phase1(sillyTurtle, angle, xtar, ytar):
         return False
 
 def phase2(sillyTurtle, ytar):
+    """
+    places the turtle in a spot where it lines up with its destination
+    """
     if sillyTurtle["phase"] == 2:
         sillyTurtle["turtle"].goto(sillyTurtle["destination"][0], ytar)
         sillyTurtle["phase"] += 1
@@ -217,25 +229,25 @@ def check(myStuff):
             return ['', False]
 
 def checkStraight(board, myPlayer):
-    for row in range(0, len(board)-3):
+    for row in range(0, len(board)-3): # checks for vertical 4-in-a-row
             for column in range(0, len(board[0])):
                 if (myPlayer[0] == board[row][column] == board[row+1][column] == board[row+2][column] == board[row+3][column]):
                     return myPlayer, True
                 
-    for column in range(0, len(board[0])-3):
+    for column in range(0, len(board[0])-3): # checks for horizontal 4-in-a-row
         for row in range(0, len(board)):
             if (myPlayer[0] == board[row][column] == board[row][column+1] == board[row][column+2] == board[row][column+3]):
                 return myPlayer, True
     return ['', False]
 
 def checkDiagonal(board, myPlayer):
-    for row in range(0, len(board)-3):
+    for row in range(0, len(board)-3): # checks for diagonals 4-in-a-row 
             for column in range(0, len(board[0])-3):
                 if (myPlayer[0] == board[row][column] == board[row+1][column+1] == board[row+2][column+2] == board[row+3][column+3]):
                     return myPlayer, True
         
     for row in range(0, len(board)-3):
-        for column in range(6, 2, -1):
+        for column in range(6, 2, -1): # checks for diagonal 4-in-a-row
             if (myPlayer[0] == board[row][column] == board[row+1][column-1] == board[row+2][column-2] == board[row+3][column-3]):
                 print(f"{myPlayer} won!")
                 return myPlayer, True
@@ -248,16 +260,21 @@ def getInput(myStuff):
     boardXRange = myStuff["boardXRange"]
     boardYRange = myStuff["boardYRange"]
     pieceCount = myStuff["pieceCount"]
-    try:
+    try: 
+        ##### WE WANT YOU TO NOTE: the reason we don't have this big thing in smaller pieces is because this is just so much less painful
         targetColumn = input(f"\nIt is currently {player}'s turn.\nPlease choose a column to insert a piece: ")
-        log_action(myStuff, f"Input was taken from the user. Input: {targetColumn}")
-        if targetColumn == "exit":
+        log_action(myStuff, f"User input: {targetColumn}")
+        if targetColumn.lower() == "exit":
             log_action(myStuff, "Game was exited manually")
             return False
-        if targetColumn == "help":
+        if targetColumn.lower() == "help":
             log_action(myStuff, "Rules were printed in terminal")
             rules()
             return True
+        if targetColumn.lower() == 'log':
+            log_action(myStuff, "log was printed in terminal")
+            log_print()
+            return False
         targetColumn = int(targetColumn) - 1 # tries to convert to int
         if targetColumn >= 0 and targetColumn <= 6: # if the value is in the right range
             if pieceCount[targetColumn] < 6: # if the column isnt full
@@ -295,11 +312,28 @@ def log_action(myStuff, action):
         myStuff["counter"] += 1
         return True
     except:
+        myLog.close()
+        return False
+
+def log_print():
+    """
+    Prints the entirety of the current round's log
+    """
+    try:
+        myLog = open('game_log.txt', 'r')
+        print("##########################################")
+        print("Current round's log:")
+        for i in myLog.readlines():
+            print(i.strip())
+        myLog.close()
+        return True
+    except:
+        myLog.close()
         return False
 
 def main():
     """
-    The entire game is contained in this function
+    The entire game is run within this function
     """
     
     rules()
@@ -325,14 +359,20 @@ def main():
         if won: # if one of the players won
             print(f"\n{winner} has won this round of connect 4!\n")
             print("Would you like to play again?")
-            print("Please input 'yes' to play again!\n")
+            print("Options:")
+            print("'yes' - inputting 'yes' will start another round")
+            print("'log' - inputting 'log' will print all the recorded events this round")
             print("input anything else to exit the game\n")
             playAgain = input("What do you choose?: ")
-            if (playAgain == 'yes'):
+            log_action(myStuff, f"User input: {playAgain}")
+            if (playAgain.lower() == 'yes'):
                 log_action(myStuff, "The player decided to play again! YIPPEE!")
                 myStuff["canvas"].clearscreen()
+            elif (playAgain.lower() == 'log'):
+                log_action(myStuff, "log was printed into terminal")
+                log_print()
             else:
-                log_action(myStuff, "The player decided not to play again. Oh well.")
+                log_action(myStuff, "The player decided not to play again, Oh well")
                 print("Goodbye! Thank you for playing!")
                 game = False
 
