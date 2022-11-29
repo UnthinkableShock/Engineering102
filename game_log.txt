@@ -1,0 +1,24 @@
+0 : Program was run
+1 : Input was taken from the user. Input: 1
+2 : blue put a piece in the 1 column at row 1
+
+3 : Input was taken from the user. Input: 2
+4 : red put a piece in the 2 column at row 1
+
+5 : Input was taken from the user. Input: 1
+6 : blue put a piece in the 1 column at row 2
+
+7 : Input was taken from the user. Input: 2
+8 : red put a piece in the 2 column at row 2
+
+9 : Input was taken from the user. Input: 1
+10 : blue put a piece in the 1 column at row 3
+
+11 : Input was taken from the user. Input: 2
+12 : red put a piece in the 2 column at row 3
+
+13 : Input was taken from the user. Input: 1
+14 : blue put a piece in the 1 column at row 4
+
+15 : blue won! Congratulations!
+16 : The player decided not to play again. Oh well.
