@@ -92,16 +92,6 @@ def drawBoard(myStuff):
     myBoard.penup()
     return 0
 
-####### creating a new turtle #######
-
-def new_turtle(myTurtles, destination, color):
-    """
-    creates all the things a new turtle would need in its journey to be a connect 4 piece
-    """
-    myTurtle(myTurtles, destination, color)
-    #myTurtles.append(myTurtle(myTurtles, destination, color))
-    return 0
-
 ##############
 
 def rules():
