@@ -2,53 +2,23 @@
 1 : User input: 1
 2 : blue put a piece in the 1 column at row 1
 
-3 : User input: 3
-4 : red put a piece in the 3 column at row 1
+3 : User input: 2
+4 : red put a piece in the 2 column at row 1
 
-5 : User input: 2
-6 : blue put a piece in the 2 column at row 1
+5 : User input: 3
+6 : blue put a piece in the 3 column at row 1
 
 7 : User input: 4
 8 : red put a piece in the 4 column at row 1
 
-9 : User input: 1
-10 : blue put a piece in the 1 column at row 2
+9 : User input: 5
+10 : blue put a piece in the 5 column at row 1
 
-11 : User input: 4
-12 : red put a piece in the 4 column at row 2
+11 : User input: 6
+12 : red put a piece in the 6 column at row 1
 
-13 : User input: 5
-14 : blue put a piece in the 5 column at row 1
+13 : User input: 7
+14 : blue put a piece in the 7 column at row 1
 
-15 : User input: 6
-16 : red put a piece in the 6 column at row 1
-
-17 : User input: 7
-18 : blue put a piece in the 7 column at row 1
-
-19 : User input: 7
-20 : red put a piece in the 7 column at row 2
-
-21 : User input: 1
-22 : blue put a piece in the 1 column at row 3
-
-23 : User input: 2
-24 : red put a piece in the 2 column at row 2
-
-25 : User input: 3
-26 : blue put a piece in the 3 column at row 2
-
-27 : User input: 4
-28 : red put a piece in the 4 column at row 3
-
-29 : User input: 5
-30 : blue put a piece in the 5 column at row 2
-
-31 : User input: 6
-32 : red put a piece in the 6 column at row 2
-
-33 : User input: 7
-34 : blue put a piece in the 7 column at row 3
-
-35 : User input: help
-36 : Rules were printed in terminal
+15 : User input: log
+16 : log was printed in terminal
