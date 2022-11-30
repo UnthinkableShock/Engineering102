@@ -17,6 +17,29 @@ import numpy as np
 
 ##### setup #####
 
+class myTurtle:
+    def __init__(self, myTurtles, destination, color):
+        self.xpos = -350
+        self.ypos = 225
+        self.data = {
+        "turtle":turtle.Turtle(),
+        }
+        self.data["turtle"].color(color)
+        self.data["turtle"].speed(0)
+        self.data["turtle"].width(1)
+        self.data["turtle"].hideturtle() # hides the turtle
+        self.data["turtle"].penup() # makes it so that the turtle doesn't leave behind a trail
+        self.data["turtle"].goto(self.xpos, self.ypos) # go to the starting point, off screen
+        self.side = color
+        self.startPos = [self.xpos, self.ypos]
+        self.destination = destination
+        self.phase = 0
+        self.angle = -np.pi/2
+        self.rad = 50
+        self.color = color
+        self.radius = 20
+        
+
 def setup():
     canvas = turtle.Screen()     
     canvas.setup(700, 800)
@@ -74,29 +97,7 @@ def new_turtle(myTurtles, destination, color):
     """
     creates all the things a new turtle would need in its journey to be a connect 4 piece
     """
-    xpos = -350
-    ypos = 225
-    radius = 20
-    width = 1
-    myTurtle = turtle.Turtle() # a new turtle object
-    myTurtle.color(color)
-    myTurtle.speed(0)
-    myTurtle.width(1)
-    myTurtle.hideturtle() # hides the turtle
-    myTurtle.penup() # makes it so that the turtle doesn't leave behind a trail
-    myTurtle.goto(xpos, ypos) # go to the starting point, off screen
-    myDict = {
-        "turtle":myTurtle,
-        "side":color,
-        "startPos":[xpos, ypos],
-        "destination":destination,
-        "phase":0,
-        "angle":-np.pi/2,
-        "rad":50,
-        "color":color,
-        "radius":radius,
-    }
-    myTurtles.append(myDict)
+    myTurtles.append(myTurtle(myTurtles, destination, color))
     return 0
 
 ##############
@@ -123,23 +124,23 @@ def drawCircle(myTurtle, color='red', radius=20):
     """
     draws a circle using the indicated turtle
     """
-    myTurtle.fillcolor(color)
-    myTurtle.begin_fill()
-    myTurtle.circle(radius)
-    myTurtle.end_fill()
+    myTurtle.data["turtle"].fillcolor(color)
+    myTurtle.data["turtle"].begin_fill()
+    myTurtle.data["turtle"].circle(radius)
+    myTurtle.data["turtle"].end_fill()
     return 0
 
 def phase0(sillyTurtle):
     """
     phase0 makes the turtle move from off screen to on screen
     """
-    if sillyTurtle["phase"] == 0: # phase 0 is just coming onto the screen
-        if abs(sillyTurtle["turtle"].xcor() - sillyTurtle["destination"][0] - sillyTurtle["rad"]) <= 1:
-            sillyTurtle["phase"] += 1
+    if sillyTurtle.phase == 0: # phase 0 is just coming onto the screen
+        if abs(sillyTurtle.data["turtle"].xcor() - sillyTurtle.destination[0] - sillyTurtle.rad) <= 1:
+            sillyTurtle.phase += 1
             return True
         else:
-            sillyTurtle["turtle"].setheading(0)
-            sillyTurtle["turtle"].forward(1)
+            sillyTurtle.data["turtle"].setheading(0)
+            sillyTurtle.data["turtle"].forward(1)
             return False
     else:
         return False
@@ -148,13 +149,13 @@ def phase1(sillyTurtle, angle, xtar, ytar):
     """
     Makes the turtle perform a Loop de loop. Need I say more?
     """
-    if sillyTurtle["phase"] == 1: # phase 1 is where the fun part is: LOOP DE LOOP WHOOOOOP!!!
+    if sillyTurtle.phase == 1: # phase 1 is where the fun part is: LOOP DE LOOP WHOOOOOP!!!
         if abs(angle - np.pi) <= 0.01:
-            sillyTurtle["phase"] += 1
+            sillyTurtle.phase += 1
             return True
         else:
-            sillyTurtle["turtle"].goto(xtar + sillyTurtle["rad"]*np.cos(angle), ytar + sillyTurtle["rad"]*np.sin(angle))
-            sillyTurtle["angle"] += 0.01
+            sillyTurtle.data["turtle"].goto(xtar + sillyTurtle.rad*np.cos(angle), ytar + sillyTurtle.rad*np.sin(angle))
+            sillyTurtle.angle += 0.01
             return False
     else:
         return False
@@ -163,20 +164,20 @@ def phase2(sillyTurtle, ytar):
     """
     places the turtle in a spot where it lines up with its destination
     """
-    if sillyTurtle["phase"] == 2:
-        sillyTurtle["turtle"].goto(sillyTurtle["destination"][0], ytar)
-        sillyTurtle["phase"] += 1
+    if sillyTurtle.phase == 2:
+        sillyTurtle.data["turtle"].goto(sillyTurtle.destination[0], ytar)
+        sillyTurtle.phase += 1
     else:
         return False
 
 def phase3(sillyTurtle):
-    if sillyTurtle["phase"] == 3:
-        if abs(sillyTurtle["turtle"].xcor() - sillyTurtle["destination"][0]) <= 0.1 and abs(sillyTurtle["turtle"].ycor() - sillyTurtle["destination"][1]) <= 0.1:
-            sillyTurtle["phase"] += 1
+    if sillyTurtle.phase == 3:
+        if abs(sillyTurtle.data["turtle"].xcor() - sillyTurtle.destination[0]) <= 0.1 and abs(sillyTurtle.data["turtle"].ycor() - sillyTurtle.destination[1]) <= 0.1:
+            sillyTurtle.phase += 1
             return True
         else:
-            sillyTurtle["turtle"].setheading(-90)
-            sillyTurtle["turtle"].forward(1)
+            sillyTurtle.data["turtle"].setheading(-90)
+            sillyTurtle.data["turtle"].forward(1)
             return False
     else:
         return False
@@ -185,15 +186,15 @@ def animateTurtle(sillyTurtle, canvas):
     """
     Will move the pieces as needed
     """
-    while sillyTurtle["phase"] != 4: # each "phase" corresponds to different movements
+    while sillyTurtle.phase != 4: # each "phase" corresponds to different movements
         # clear sillyTurtle work
-        sillyTurtle["turtle"].clear()
+        sillyTurtle.data["turtle"].clear()
         # call function to draw ball
-        drawCircle(sillyTurtle["turtle"], sillyTurtle["color"], sillyTurtle["radius"])
-        rad = sillyTurtle["rad"]
-        angle = sillyTurtle["angle"]
-        xtar = sillyTurtle["destination"][0]+rad
-        ytar = sillyTurtle["startPos"][1]+rad
+        drawCircle(sillyTurtle, sillyTurtle.color, sillyTurtle.radius)
+        rad = sillyTurtle.rad
+        angle = sillyTurtle.angle
+        xtar = sillyTurtle.destination[0]+rad
+        ytar = sillyTurtle.startPos[1]+rad
         
         if phase0(sillyTurtle): # moves turtle, but the if x then continue makes it so that the other phases dont get accidentally triggered
             continue
