@@ -330,6 +330,9 @@ def main():
     """
     The entire game is run within this function
     """
+    myFile = open('game_log.txt', 'r')
+    myList = list(myFile)
+    print(myList)
     print("Welcome to the game of Connect Four! This version is meant for 2 players.")
     rules()
     myStuff = setup()
