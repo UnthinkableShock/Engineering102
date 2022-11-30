@@ -8,40 +8,24 @@
 5 : User input: 3
 6 : blue put a piece in the 3 column at row 1
 
-7 : User input: 1
-8 : red put a piece in the 1 column at row 2
+7 : User input: 4
+8 : red put a piece in the 4 column at row 1
 
-9 : User input: 2
-10 : blue put a piece in the 2 column at row 2
+9 : User input: 3
+10 : blue put a piece in the 3 column at row 2
 
-11 : User input: 3
-12 : red put a piece in the 3 column at row 2
+11 : User input: 4
+12 : red put a piece in the 4 column at row 2
 
-13 : User input: 1
-14 : blue put a piece in the 1 column at row 3
+13 : User input: 3
+14 : blue put a piece in the 3 column at row 3
 
-15 : User input: 2
-16 : red put a piece in the 2 column at row 3
+15 : User input: 4
+16 : red put a piece in the 4 column at row 3
 
 17 : User input: 3
-18 : blue put a piece in the 3 column at row 3
+18 : blue put a piece in the 3 column at row 4
 
-19 : User input: 3
-20 : red put a piece in the 3 column at row 4
-
-21 : User input: 4
-22 : blue put a piece in the 4 column at row 1
-
-23 : User input: 1
-24 : red put a piece in the 1 column at row 4
-
-25 : User input: 5
-26 : blue put a piece in the 5 column at row 1
-
-27 : User input: 2
-28 : red put a piece in the 2 column at row 4
-
-29 : User input: 6
-30 : blue put a piece in the 6 column at row 1
-
-31 : blue won! Congratulations!
+19 : blue won! Congratulations!
+20 : User input: log
+21 : log was printed into terminal

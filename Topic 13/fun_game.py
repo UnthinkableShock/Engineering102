@@ -38,6 +38,7 @@ class myTurtle:
         self.rad = 50
         self.color = color
         self.radius = 20
+        myTurtles.append(self)
         
 
 def setup():
@@ -97,7 +98,8 @@ def new_turtle(myTurtles, destination, color):
     """
     creates all the things a new turtle would need in its journey to be a connect 4 piece
     """
-    myTurtles.append(myTurtle(myTurtles, destination, color))
+    myTurtle(myTurtles, destination, color)
+    #myTurtles.append(myTurtle(myTurtles, destination, color))
     return 0
 
 ##############
@@ -135,12 +137,12 @@ def phase0(sillyTurtle):
     phase0 makes the turtle move from off screen to on screen
     """
     if sillyTurtle.phase == 0: # phase 0 is just coming onto the screen
-        if abs(sillyTurtle.data["turtle"].xcor() - sillyTurtle.destination[0] - sillyTurtle.rad) <= 1:
+        if sillyTurtle.data["turtle"].xcor() - sillyTurtle.destination[0] - sillyTurtle.rad >= 0:
             sillyTurtle.phase += 1
             return True
         else:
             sillyTurtle.data["turtle"].setheading(0)
-            sillyTurtle.data["turtle"].forward(1)
+            sillyTurtle.data["turtle"].forward(5)
             return False
     else:
         return False
@@ -150,12 +152,12 @@ def phase1(sillyTurtle, angle, xtar, ytar):
     Makes the turtle perform a Loop de loop. Need I say more?
     """
     if sillyTurtle.phase == 1: # phase 1 is where the fun part is: LOOP DE LOOP WHOOOOOP!!!
-        if abs(angle - np.pi) <= 0.01:
+        if angle - np.pi > 0.01:
             sillyTurtle.phase += 1
             return True
         else:
             sillyTurtle.data["turtle"].goto(xtar + sillyTurtle.rad*np.cos(angle), ytar + sillyTurtle.rad*np.sin(angle))
-            sillyTurtle.angle += 0.01
+            sillyTurtle.angle += 0.05
             return False
     else:
         return False
@@ -171,13 +173,16 @@ def phase2(sillyTurtle, ytar):
         return False
 
 def phase3(sillyTurtle):
+    """
+    makes the turtle go down until it reaches it's destination
+    """
     if sillyTurtle.phase == 3:
-        if abs(sillyTurtle.data["turtle"].xcor() - sillyTurtle.destination[0]) <= 0.1 and abs(sillyTurtle.data["turtle"].ycor() - sillyTurtle.destination[1]) <= 0.1:
+        if (sillyTurtle.data["turtle"].xcor() - sillyTurtle.destination[0] < 0.1) and (sillyTurtle.data["turtle"].ycor() - sillyTurtle.destination[1]) < 0.1:
             sillyTurtle.phase += 1
             return True
         else:
             sillyTurtle.data["turtle"].setheading(-90)
-            sillyTurtle.data["turtle"].forward(1)
+            sillyTurtle.data["turtle"].forward(5)
             return False
     else:
         return False
@@ -279,7 +284,7 @@ def getInput(myStuff):
         targetColumn = int(targetColumn) - 1 # tries to convert to int
         if targetColumn >= 0 and targetColumn <= 6: # if the value is in the right range
             if pieceCount[targetColumn] < 6: # if the column isnt full
-                new_turtle(myStuff["myTurtles"], [boardXRange[targetColumn], boardYRange[pieceCount[targetColumn]]], player)
+                myTurtle(myStuff["myTurtles"], [boardXRange[targetColumn], boardYRange[pieceCount[targetColumn]]], player)
                 myStuff["board"][5 - pieceCount[targetColumn]][targetColumn] = player[0]
                 myStuff["pieceCount"][targetColumn] += 1 # need to refer to the original dictionary if I want to change it
                 # records the moves taken to display at the end
@@ -377,9 +382,7 @@ def main():
                 print("Goodbye! Thank you for playing!")
                 game = False
 
-    return 0
-                    
-                
+    return 0          
 
 if __name__ == "__main__":
     main()
