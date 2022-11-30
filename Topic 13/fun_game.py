@@ -98,7 +98,6 @@ def rules():
     """
     Prints the rules into the console
     """
-    print("Welcome to the game of Connect Four! This version is meant for 2 players.")
     print("The rules are simple:")
     print("1. In order to win, you need to get 4 of your color pieces in a row diagonally, horizontally, or vertically.")
     print("2. If a column is full, you cannot place a piece in that column")
@@ -331,7 +330,7 @@ def main():
     """
     The entire game is run within this function
     """
-    
+    print("Welcome to the game of Connect Four! This version is meant for 2 players.")
     rules()
     myStuff = setup()
     myStuff["currentPlayer"] = "blue"
@@ -371,7 +370,6 @@ def main():
                 log_action(myStuff, "The player decided not to play again, Oh well")
                 print("Goodbye! Thank you for playing!")
                 game = False
-
     return 0          
 
 if __name__ == "__main__":
