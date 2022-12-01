@@ -349,6 +349,8 @@ def main():
         needInput = True
         while needInput: # while I need input, keep trying to get it
             needInput = getInput(myStuff)
+            if not needInput:
+                game = False
         if game == False: # stops it from drawing the turtles if the game is already over
             break
         for sillyTurtle in myStuff["myTurtles"]: # loops through all the pieces
