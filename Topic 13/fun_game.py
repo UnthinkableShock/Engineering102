@@ -198,8 +198,6 @@ def animateTurtle(sillyTurtle, canvas):
             continue
         elif phase3(sillyTurtle): # checks for it to reach the end destination
             break
-
-        # update the screen
         canvas.update()
     return 0
 
@@ -330,9 +328,9 @@ def main():
     """
     The entire game is run within this function
     """
-    myFile = open('game_log.txt', 'r')
-    myList = list(myFile)
-    print(myList)
+    #myFile = open('game_log.txt', 'r')
+    #myList = list(myFile)
+    #print(myList)
     print("Welcome to the game of Connect Four! This version is meant for 2 players.")
     rules()
     myStuff = setup()
@@ -349,8 +347,8 @@ def main():
         needInput = True
         while needInput: # while I need input, keep trying to get it
             needInput = getInput(myStuff)
-            if not needInput:
-                game = False
+            #if not needInput:
+            #    game = False
         if game == False: # stops it from drawing the turtles if the game is already over
             break
         for sillyTurtle in myStuff["myTurtles"]: # loops through all the pieces

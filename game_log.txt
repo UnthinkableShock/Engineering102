@@ -14,43 +14,15 @@
 9 : User input: 5
 10 : blue put a piece in the 5 column at row 1
 
-11 : User input: 6
-12 : red put a piece in the 6 column at row 1
+11 : User input: 1
+12 : red put a piece in the 1 column at row 2
 
-13 : User input: 7
-14 : blue put a piece in the 7 column at row 1
+13 : User input: 2
+14 : blue put a piece in the 2 column at row 2
 
-15 : User input: 1
-16 : red put a piece in the 1 column at row 2
+15 : User input: 3
+16 : red put a piece in the 3 column at row 2
 
 17 : User input: 2
-18 : blue put a piece in the 2 column at row 2
+18 : blue put a piece in the 2 column at row 3
 
-19 : User input: 2
-20 : red put a piece in the 2 column at row 3
-
-21 : User input: 3
-22 : blue put a piece in the 3 column at row 2
-
-23 : User input: 3
-24 : red put a piece in the 3 column at row 3
-
-25 : User input: 4
-26 : blue put a piece in the 4 column at row 2
-
-27 : User input: 4
-28 : red put a piece in the 4 column at row 3
-
-29 : User input: 5
-30 : blue put a piece in the 5 column at row 2
-
-31 : blue won! Congratulations!
-32 : User input: log
-33 : log was printed into terminal
-34 : User input: help
-35 : Rules were printed in terminal
-36 : User input: exit
-37 : Game was exited manually
-38 : blue won! Congratulations!
-39 : User input: exit
-40 : The player decided not to play again, Oh well
